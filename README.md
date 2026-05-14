@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌌 CAT Simulation Engine
+# CAT Simulation Engine
 
 ### Cosmobiological Asynchrony Theory — Agent-Based Fermi Paradox Model
 
