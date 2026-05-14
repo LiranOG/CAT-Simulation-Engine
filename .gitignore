@@ -1,0 +1,58 @@
+# ── Build Artifacts ──────────────────────────────────────────────
+/target/
+engine_rust/target/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# ── Rust ─────────────────────────────────────────────────────────
+**/*.rs.bk
+Cargo.lock
+# Note: Cargo.lock is typically committed for binaries.
+# Uncomment the line above only if this crate is used as a library.
+
+# ── Python ───────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+ENV/
+env/
+
+# ── Data Output (contents, not directory) ────────────────────────
+data/*.json
+data/*.csv
+data/figures/
+!data/.gitkeep
+
+# ── IDE / Editor ─────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── OS ───────────────────────────────────────────────────────────
+.DS_Store
+Desktop.ini
+ehthumbs.db
+
+# ── Testing / Coverage ──────────────────────────────────────────
+htmlcov/
+.coverage
+.coverage.*
+.pytest_cache/
+.tox/
+.nox/
+
+# ── Logs ─────────────────────────────────────────────────────────
+*.log
