@@ -4,8 +4,6 @@
 
 ### Cosmobiological Asynchrony Theory — Agent-Based Fermi Paradox Model
 
-[![Rust CI](https://github.com/cat-research/CAT-Simulation-Engine/actions/workflows/rust_ci.yml/badge.svg)](https://github.com/cat-research/CAT-Simulation-Engine/actions/workflows/rust_ci.yml)
-[![Python CI](https://github.com/cat-research/CAT-Simulation-Engine/actions/workflows/python_ci.yml/badge.svg)](https://github.com/cat-research/CAT-Simulation-Engine/actions/workflows/python_ci.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/Rust-1.78+-orange.svg)](https://www.rust-lang.org/)
 [![Python](https://img.shields.io/badge/Python-3.12+-green.svg)](https://www.python.org/)
