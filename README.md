@@ -163,7 +163,7 @@ cargo test --all-targets
 ```bash
 cd analytics_python
 pip install -r requirements.txt
-streamlit run dashboard.py
+python -m streamlit run dashboard.py
 ```
 
 ### Generate Static Figures
