@@ -426,4 +426,4 @@ Released under the Apache License 2.0. See [`LICENSE`](LICENSE) for the full tex
 
 ---
 
-*Last revision: 2026-05-14.*
+*Last revision: 2026-05-15.*
