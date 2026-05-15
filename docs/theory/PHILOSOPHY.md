@@ -129,4 +129,4 @@ The framework is therefore best read as an organized question: how often can bio
 
 ---
 
-*Last revision: 2026-05-14.*
+*Last revision: 2026-05-15.*
