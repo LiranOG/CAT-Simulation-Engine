@@ -154,6 +154,7 @@ impl Agent {
     /// The constructor records initial values separately from mutable values so
     /// `tick()` can evaluate each equation from its analytical initial
     /// condition rather than integrating from the previous tick.
+    #[allow(clippy::too_many_arguments)]
     pub fn new(
         position: (f64, f64),
         energy: f64,
