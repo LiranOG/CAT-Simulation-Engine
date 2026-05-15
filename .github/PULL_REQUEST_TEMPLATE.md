@@ -14,7 +14,7 @@
 Provide a concise summary of the changes. Reference the related issue(s) using `Closes #<number>`.
 
 **What**: Describe what was changed.
-**Why**: Explain the motivation — why is this change necessary?
+**Why**: Explain the motivation: why is this change necessary?
 **How**: Briefly describe the implementation approach.
 
 ### Mathematical Validity (if applicable)
@@ -23,8 +23,8 @@ If this PR modifies agent dynamics, collapse functions, or state vector equation
 
 - [ ] The modified equations are documented in code comments
 - [ ] Unit tests verify the mathematical correctness against known analytic results
-- [ ] Edge cases (E → ∞, T → 0, C → 1) have been tested
-- [ ] The Asynchronous Gap collapse condition `(E > E_crit) ∧ (T > T_surv) ∧ (C < C_hive)` is preserved
+- [ ] Edge cases (E -> infinity, T -> 0, C -> 1) have been tested
+- [ ] The Asynchronous Gap collapse condition `(E > E_crit) AND (T > T_surv) AND (C < C_hive)` is preserved
 
 ### Checklist
 
@@ -41,8 +41,8 @@ If this PR modifies agent dynamics, collapse functions, or state vector equation
 - [ ] Linting: `cargo clippy -- -D warnings` and `flake8 --max-line-length 100` pass
 
 #### Documentation
-- [ ] Public API changes reflected in `docs/API_Reference.md`
-- [ ] Architecture changes reflected in `docs/CAT_Architecture.md`
+- [ ] Public API changes reflected in `docs/api/API_Reference.md`
+- [ ] Architecture changes reflected in `docs/architecture/CAT_Architecture.md`
 - [ ] README updated if user-facing behavior changed
 
 #### Performance (if applicable)

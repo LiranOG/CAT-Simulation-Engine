@@ -1,32 +1,28 @@
 // ============================================================================
-// main.rs — CLI Entry Point for the CAT Simulation Engine
+// main.rs - CLI entry point for the CAT Simulation Engine.
 // ============================================================================
-// Parses arguments, creates the timestamped run directory, then hands
-// control to the engine. Each invocation produces a unique output path;
-// previous runs are never touched.
+// The binary parses arguments, creates a timestamped archive directory, and then
+// delegates all model behavior to the library crate. Each invocation writes to a
+// distinct run path so previous archives are not overwritten.
 // ============================================================================
 
-mod agent;
-mod exporter;
-mod grid;
-mod simulation;
-
-use agent::CollapseThresholds;
+// The binary uses the library crate for all simulation logic.
+// Module declarations live in lib.rs; main.rs is pure CLI glue.
+use cat_simulation_engine::agent::CollapseThresholds;
+use cat_simulation_engine::exporter::Exporter;
+use cat_simulation_engine::grid::GridConfig;
+use cat_simulation_engine::simulation::{Simulation, SimulationConfig};
 use clap::Parser;
-use exporter::Exporter;
-use grid::GridConfig;
-use simulation::{Simulation, SimulationConfig};
 
 /// CAT Simulation Engine: Agent-Based Fermi Paradox Model.
 ///
-/// Technology scales exponentially (E = e^(r·t)).
-/// Wisdom scales logarithmically (T ∝ ln(t)).
-/// The exponential always wins.
-/// Hive-minds survive. Everyone else is silence.
+/// Technology scales exponentially as E = exp(r * t), while modeled
+/// psychological adaptation decays logarithmically. The CLI exposes the
+/// thresholds needed to explore that rate mismatch reproducibly.
 #[derive(Parser, Debug)]
 #[command(name = "cat-engine")]
 #[command(version = "1.0.0")]
-#[command(about = "Cosmobiological Asynchrony Theory — Fermi Paradox ABM")]
+#[command(about = "Cosmobiological Asynchrony Theory - Fermi Paradox ABM")]
 struct Cli {
     /// Total simulation ticks to execute.
     #[arg(short = 't', long, default_value_t = 10_000)]
@@ -82,6 +78,7 @@ struct Cli {
     config_file: Option<String>,
 }
 
+/// Parse the command line, create the run archive, and execute the simulation.
 fn main() {
     env_logger::Builder::from_env(env_logger::Env::default().default_filter_or("info"))
         .format_timestamp_millis()
@@ -89,12 +86,10 @@ fn main() {
 
     let cli = Cli::parse();
 
-    log::info!("╔══════════════════════════════════════════════════════════╗");
-    log::info!("║  CAT Simulation Engine v1.0.0                           ║");
-    log::info!("║  Cosmobiological Asynchrony Theory — Fermi Paradox ABM  ║");
-    log::info!("╚══════════════════════════════════════════════════════════╝");
+    log::info!("CAT Simulation Engine v1.0.0");
+    log::info!("Cosmobiological Asynchrony Theory - Fermi Paradox ABM");
 
-    // ── Load or build configuration ─────────────────────────────────────────
+    // Load or build configuration.
     let (mut config, base_dir) = if let Some(ref config_path) = cli.config_file {
         match std::fs::read_to_string(config_path) {
             Ok(json) => match serde_json::from_str::<SimulationConfig>(&json) {
@@ -139,7 +134,7 @@ fn main() {
         (cfg, base)
     };
 
-    // ── Resolve base_data_dir to an absolute path ────────────────────────────
+    // Resolve base_data_dir to an absolute path.
     // Relative paths like "../data" resolve differently depending on the
     // working directory from which `cargo run` or the binary is invoked.
     // Canonicalizing here eliminates all ambiguity.
@@ -152,7 +147,11 @@ fn main() {
             match std::env::current_dir() {
                 Ok(cwd) => cwd.join(raw).to_string_lossy().to_string(),
                 Err(e) => {
-                    log::warn!("Cannot determine cwd ({}); using raw path '{}'", e, base_dir);
+                    log::warn!(
+                        "Cannot determine cwd ({}); using raw path '{}'",
+                        e,
+                        base_dir
+                    );
                     base_dir.clone()
                 }
             }
@@ -162,18 +161,19 @@ fn main() {
     config.base_data_dir = abs_base_dir.clone();
     log::info!("Data root (absolute): {}", abs_base_dir);
 
-    // ── Create timestamped run directory ─────────────────────────────────────
-    let run_dir = match Exporter::create_run_directory(
-        &abs_base_dir,
-        config.seed,
-        config.initial_agents,
-    ) {
-        Ok(dir) => dir,
-        Err(e) => {
-            log::error!("Failed to create run directory under '{}': {}", abs_base_dir, e);
-            std::process::exit(1);
-        }
-    };
+    // Create timestamped run directory.
+    let run_dir =
+        match Exporter::create_run_directory(&abs_base_dir, config.seed, config.initial_agents) {
+            Ok(dir) => dir,
+            Err(e) => {
+                log::error!(
+                    "Failed to create run directory under '{}': {}",
+                    abs_base_dir,
+                    e
+                );
+                std::process::exit(1);
+            }
+        };
 
     // output_dir is the fully-resolved timestamped subdirectory.
     // This is what the Exporter writes all files to.

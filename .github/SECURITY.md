@@ -4,8 +4,8 @@
 
 | Version | Supported |
 |---------|-----------|
-| 1.0.x   | ✅ Active security updates |
-| < 1.0   | ❌ Not supported |
+| 1.0.x   | Active security updates |
+| < 1.0   | Not supported |
 
 ## Threat Model
 
@@ -19,7 +19,7 @@ The CAT Simulation Engine is a scientific computing tool, not a network service.
 - Extremely large `initial_agents` or `max_ticks` values designed to exhaust system memory.
 - Negative or NaN values in threshold parameters causing undefined mathematical behavior.
 - Malformed JSON in `--config-file` input triggering parser vulnerabilities.
-- Path traversal in `--output-dir` directing writes to sensitive filesystem locations.
+- Path traversal via `-o` / `--base-data-dir` directing writes to sensitive filesystem locations.
 
 **Mitigations**:
 - All numeric inputs are validated at parse time via `clap` type constraints.

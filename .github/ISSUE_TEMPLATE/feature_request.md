@@ -25,7 +25,7 @@ If the feature involves model changes, provide the mathematical specification:
 
 - Which components are affected? (`agent.rs`, `simulation.rs`, `grid.rs`, `dashboard.py`, etc.)
 - Estimated complexity (hours/days/weeks)
-- Performance implications for large-scale simulations (>10⁶ agents)
+- Performance implications for large-scale simulations (>1,000,000 agents)
 
 ## Alternatives Considered
 

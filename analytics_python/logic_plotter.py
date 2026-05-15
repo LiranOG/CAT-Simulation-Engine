@@ -1,5 +1,5 @@
 """
-logic_plotter.py — Standalone Analytical Plotting for CAT Simulation Data
+logic_plotter.py - Standalone Analytical Plotting for CAT Simulation Data
 ==========================================================================
 Generates publication-quality static figures from simulation output.
 For those who prefer matplotlib's precision over Streamlit's interactivity,
@@ -19,7 +19,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-# ── Plot Style Configuration ───────────────────────────────────────────────
+# Plot style configuration.
 plt.style.use("dark_background")
 sns.set_context("paper", font_scale=1.2)
 
@@ -38,7 +38,7 @@ COLORS = {
 }
 
 
-def load_data(data_dir: str):
+def load_data(data_dir: str) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, dict]:
     """Load all simulation output files from the data directory."""
     data_dir = Path(data_dir)
 
@@ -72,7 +72,7 @@ def load_data(data_dir: str):
     return tick_df, collapse_df, agents_df, config
 
 
-def plot_asynchronous_gap_theory(output_dir: Path):
+def plot_asynchronous_gap_theory(output_dir: Path) -> None:
     """
     Plot the theoretical Asynchronous Gap: E = e^x vs Maturity = ln(x).
 
@@ -116,10 +116,10 @@ def plot_asynchronous_gap_theory(output_dir: Path):
     fig.savefig(output_dir / "asynchronous_gap_theory.png", dpi=300,
                 bbox_inches="tight", facecolor=COLORS["background"])
     plt.close(fig)
-    print(f"  ✓ asynchronous_gap_theory.png")
+    print("  wrote asynchronous_gap_theory.png")
 
 
-def plot_population_dynamics(tick_df: pd.DataFrame, output_dir: Path):
+def plot_population_dynamics(tick_df: pd.DataFrame, output_dir: Path) -> None:
     """Plot active, collapsed, and transcended population curves over time."""
     if tick_df.empty:
         return
@@ -152,10 +152,10 @@ def plot_population_dynamics(tick_df: pd.DataFrame, output_dir: Path):
     fig.savefig(output_dir / "population_dynamics.png", dpi=300,
                 bbox_inches="tight", facecolor=COLORS["background"])
     plt.close(fig)
-    print(f"  ✓ population_dynamics.png")
+    print("  wrote population_dynamics.png")
 
 
-def plot_state_vector_evolution(tick_df: pd.DataFrame, output_dir: Path):
+def plot_state_vector_evolution(tick_df: pd.DataFrame, output_dir: Path) -> None:
     """Plot mean E, T, C evolution as a 3-panel figure."""
     if tick_df.empty:
         return
@@ -185,10 +185,10 @@ def plot_state_vector_evolution(tick_df: pd.DataFrame, output_dir: Path):
     fig.savefig(output_dir / "state_vector_evolution.png", dpi=300,
                 bbox_inches="tight", facecolor=COLORS["background"])
     plt.close(fig)
-    print(f"  ✓ state_vector_evolution.png")
+    print("  wrote state_vector_evolution.png")
 
 
-def plot_collapse_analysis(collapse_df: pd.DataFrame, output_dir: Path):
+def plot_collapse_analysis(collapse_df: pd.DataFrame, output_dir: Path) -> None:
     """Generate collapse event analysis plots."""
     if collapse_df.empty:
         return
@@ -223,7 +223,7 @@ def plot_collapse_analysis(collapse_df: pd.DataFrame, output_dir: Path):
     fig.savefig(output_dir / "collapse_scatter.png", dpi=300,
                 bbox_inches="tight", facecolor=COLORS["background"])
     plt.close(fig)
-    print(f"  ✓ collapse_scatter.png")
+    print("  wrote collapse_scatter.png")
 
     # Collapse timing histogram
     fig, ax = plt.subplots(figsize=(12, 5), facecolor=COLORS["background"])
@@ -240,11 +240,12 @@ def plot_collapse_analysis(collapse_df: pd.DataFrame, output_dir: Path):
     fig.savefig(output_dir / "collapse_histogram.png", dpi=300,
                 bbox_inches="tight", facecolor=COLORS["background"])
     plt.close(fig)
-    print(f"  ✓ collapse_histogram.png")
+    print("  wrote collapse_histogram.png")
 
 
-def plot_spatial_distribution(agents_df: pd.DataFrame, collapse_df: pd.DataFrame,
-                               output_dir: Path):
+def plot_spatial_distribution(
+    agents_df: pd.DataFrame, collapse_df: pd.DataFrame, output_dir: Path
+) -> None:
     """Plot spatial distribution of final agent states and collapse sites."""
     if agents_df.empty:
         return
@@ -278,10 +279,11 @@ def plot_spatial_distribution(agents_df: pd.DataFrame, collapse_df: pd.DataFrame
     fig.savefig(output_dir / "spatial_distribution.png", dpi=300,
                 bbox_inches="tight", facecolor=COLORS["background"])
     plt.close(fig)
-    print(f"  ✓ spatial_distribution.png")
+    print("  wrote spatial_distribution.png")
 
 
-def main():
+def main() -> None:
+    """Parse CLI arguments, load one run archive, and write static figures."""
     parser = argparse.ArgumentParser(
         description="Generate publication-quality figures from CAT simulation data."
     )
@@ -297,7 +299,7 @@ def main():
     print(f"Loading data from: {args.data_dir}")
     tick_df, collapse_df, agents_df, config = load_data(args.data_dir)
 
-    print(f"Generating figures → {output_dir}")
+    print(f"Generating figures -> {output_dir}")
     plot_asynchronous_gap_theory(output_dir)
     plot_population_dynamics(tick_df, output_dir)
     plot_state_vector_evolution(tick_df, output_dir)

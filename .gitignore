@@ -1,4 +1,4 @@
-# ── Build Artifacts ──────────────────────────────────────────────
+# Build artifacts.
 /target/
 engine_rust/target/
 *.exe
@@ -6,13 +6,11 @@ engine_rust/target/
 *.so
 *.dylib
 
-# ── Rust ─────────────────────────────────────────────────────────
+# Rust.
 **/*.rs.bk
-Cargo.lock
-# Note: Cargo.lock is typically committed for binaries.
-# Uncomment the line above only if this crate is used as a library.
+# Cargo.lock is committed for binary crates because reproducible builds matter.
 
-# ── Python ───────────────────────────────────────────────────────
+# Python.
 __pycache__/
 *.py[cod]
 *$py.class
@@ -26,13 +24,15 @@ venv/
 ENV/
 env/
 
-# ── Data Output (contents, not directory) ────────────────────────
+# Data output contents, not directory documentation.
+data/runs/*
+!data/runs/README.md
 data/*.json
 data/*.csv
 data/figures/
 !data/.gitkeep
 
-# ── IDE / Editor ─────────────────────────────────────────────────
+# IDE and editor files.
 .vscode/
 .idea/
 *.swp
@@ -41,12 +41,12 @@ data/figures/
 .DS_Store
 Thumbs.db
 
-# ── OS ───────────────────────────────────────────────────────────
+# Operating system files.
 .DS_Store
 Desktop.ini
 ehthumbs.db
 
-# ── Testing / Coverage ──────────────────────────────────────────
+# Testing and coverage.
 htmlcov/
 .coverage
 .coverage.*
@@ -54,5 +54,5 @@ htmlcov/
 .tox/
 .nox/
 
-# ── Logs ─────────────────────────────────────────────────────────
+# Logs.
 *.log

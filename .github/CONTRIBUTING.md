@@ -29,7 +29,7 @@ All contributors must adhere to our [Code of Conduct](CODE_OF_CONDUCT.md). This 
    ```
 3. **Add upstream remote**:
    ```bash
-   git remote add upstream https://github.com/cat-research/CAT-Simulation-Engine.git
+   git remote add upstream https://github.com/LiranOG/CAT-Simulation-Engine.git
    ```
 4. **Create a feature branch** from `develop`:
    ```bash
@@ -42,7 +42,7 @@ All contributors must adhere to our [Code of Conduct](CODE_OF_CONDUCT.md). This 
 
 ### Rust Engine
 
-- **Rust** ≥ 1.78 (stable channel)
+- **Rust** >= 1.78 (stable channel)
 - Install via [rustup](https://rustup.rs/)
 - Required components: `rustfmt`, `clippy`
   ```bash
@@ -53,7 +53,7 @@ All contributors must adhere to our [Code of Conduct](CODE_OF_CONDUCT.md). This 
 
 ### Python Analytics
 
-- **Python** ≥ 3.12
+- **Python** >= 3.12
 - Create a virtual environment:
   ```bash
   cd analytics_python
@@ -144,7 +144,7 @@ perf(sim): batch collapse evaluation with parallel prefix scan
 Reduces Phase 3 latency by 40% for >100k agents by parallelizing
 the collapse predicate evaluation using a two-phase commit pattern.
 
-Benchmark: 100k agents, 10k ticks: 14.2s → 8.5s
+Benchmark: 100k agents, 10k ticks: 14.2s -> 8.5s
 ```
 
 ## Code Formatting Mandates
@@ -211,8 +211,8 @@ PRs that modify agent dynamics, collapse functions, or state vector equations re
 
 - Formal specification of the modified equations in the PR description
 - Unit tests verifying correctness against known analytic results
-- Edge case testing (E → ∞, T → 0, C → 1, t = 0)
-- Updated documentation in `docs/CAT_Architecture.md`
+- Edge case testing (E -> infinity, T -> 0, C -> 1, t = 0)
+- Updated documentation in `docs/architecture/CAT_Architecture.md`
 
 ## Testing Requirements
 
@@ -242,8 +242,8 @@ pytest --tb=short -q
 - All public Rust functions and structs must have `///` doc comments.
 - Comments should be precise and academically rigorous. Cynicism is permitted; vagueness is not.
 - Markdown documentation must be free of broken links and rendering errors.
-- Architecture changes must be reflected in `docs/CAT_Architecture.md`.
-- API changes must be reflected in `docs/API_Reference.md`.
+- Architecture changes must be reflected in `docs/architecture/CAT_Architecture.md`.
+- API changes must be reflected in `docs/api/API_Reference.md`.
 
 ## Issue Guidelines
 
