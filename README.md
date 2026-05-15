@@ -1,12 +1,14 @@
-<div align="center">
-
 # CAT Simulation Engine
 
 **Cosmobiological Asynchrony Theory — an agent-based model of the Fermi paradox.**
 
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)](engine_rust/Cargo.toml)
+[![Tests](https://img.shields.io/badge/tests-35%2F35-brightgreen.svg)](engine_rust/tests/)
 [![Rust](https://img.shields.io/badge/rust-stable%201.78%2B-orange.svg)](https://www.rust-lang.org/)
 [![Python](https://img.shields.io/badge/python-3.12%2B-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.0.0-informational.svg)](engine_rust/Cargo.toml)
+[![Reproducibility](https://img.shields.io/badge/reproducibility-deterministic-success.svg)](#7-reproducibility)
 
 ---
 
@@ -18,8 +20,6 @@ The engine is implemented as a Rust core (deterministic, parallelized over agent
 
 The repository contains the engine, its test suite, the analytics layer, the theoretical and architectural documentation, and the metadata required for independent verification of any reported result.
 
-</div>
-
 ---
 
 ## Table of Contents
@@ -27,7 +27,7 @@ The repository contains the engine, its test suite, the analytics layer, the the
 1. [Theoretical Foundation](#1-theoretical-foundation)
 2. [Empirical Findings](#2-empirical-findings)
 3. [System Architecture](#3-system-architecture)
-4. [Numerical Stability Doctrine](#4-numerical-stability)
+4. [Numerical Stability Doctrine](#4-numerical-stability-doctrine)
 5. [Repository Layout](#5-repository-layout)
 6. [Quick Start](#6-quick-start)
 7. [Reproducibility](#7-reproducibility)
@@ -273,7 +273,7 @@ cargo run --release -- -t 10000 -n 2500 --seed 42
 The run produces:
 
 ```
-data/runs/2026-05-14_HHMMSS_seed42_n2500/
+data/runs/2026-05-15_HHMMSS_seed42_n2500/
 ```
 
 ### 6.2 Launch the Analytics Dashboard
