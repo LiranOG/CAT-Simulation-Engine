@@ -561,8 +561,14 @@ elif page == "Asynchronous Gap":
     if "mean_async_gap" in tick_df.columns:
         st.markdown("### Simulated Mean Gap  G(t) = E / (1 - T + epsilon)")
         fig2 = go.Figure()
-        fig2.add_trace(go.Scatter(x=tick_df["tick"], y=tick_df["mean_async_gap"],
-            fill="tozeroy", line=dict(color=COLORS["gap"], width=2)))
+        fig2.add_trace(
+            go.Scatter(
+                x=tick_df["tick"],
+                y=tick_df["mean_async_gap"],
+                fill="tozeroy",
+                line=dict(color=COLORS["gap"], width=2),
+            )
+        )
         dark_fig(fig2, height=400, xaxis_title="Tick", yaxis_title="G(t)")
         st.plotly_chart(fig2, use_container_width=True)
 
@@ -581,9 +587,9 @@ elif page == "Configuration":
         t = config["thresholds"]
         st.markdown("### Threshold Parameters")
         c1, c2, c3 = st.columns(3)
-        c1.metric("E_critical", t.get("critical_energy","N/A"))
-        c2.metric("T_survival",  t.get("survival_tribalism","N/A"))
-        c3.metric("C_hive",      t.get("hive_collectivism","N/A"))
+        c1.metric("E_critical", t.get("critical_energy", "N/A"))
+        c2.metric("T_survival", t.get("survival_tribalism", "N/A"))
+        c3.metric("C_hive", t.get("hive_collectivism", "N/A"))
 
 
 # Footer.
