@@ -39,6 +39,18 @@ The repository contains the engine, its test suite, the analytics layer, the the
 
 ---
 
+> [!NOTE]
+> **Project Status & Feedback** —
+>This project is currently in active development. While it is not yet "100% finalized" and continues to evolve, all core features—the simulation engine, physics mechanics, and analytics—are fully functional and should work smoothly out of the box. 
+>
+>If you encounter any bugs, unexpected behavior, or just have ideas for improvements, you are more than welcome to:
+>* Open an [Issue](https://github.com/LiranOG/CAT-Simulation-Engine/issues) here on GitHub.
+>* Reach out to me directly.
+>
+>Your feedback, questions, and contributions are highly appreciated and help make this project better!
+
+---
+
 ## 1. Theoretical Foundation
 
 CAT formalizes three constraints on the observability of technological life. Each is conceptually independent; their effects compound in expectation.
